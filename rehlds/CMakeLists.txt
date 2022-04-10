@@ -73,7 +73,7 @@ else()
 
 	# Check if not Clang compiler
 	if (NOT "$ENV{CXX}" MATCHES "clang")
-		set(COMPILE_FLAGS "${COMPILE_FLAGS} -fno-plt -Wno-unused-but-set-variable")
+		set(COMPILE_FLAGS "${COMPILE_FLAGS} -Wno-unused-but-set-variable")
 
 		# GCC >= 8.3
 		if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 8.0)
