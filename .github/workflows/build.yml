@@ -161,7 +161,7 @@ jobs:
 
       - name: Build and Run unittests
         run: |
-          rm -rf build && CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Unittests -B build && cmake --build build -j8
+          rm -rf build && CC=gcc CXX=g++ cmake -DCMAKE_BUILD_TYPE=Unittests -B build && cmake --build build -j8
           retVal=0
           export LD_LIBRARY_PATH="rehlds/lib/linux32:$LD_LIBRARY_PATH"
           ./build/rehlds/engine_i486 2> /dev/null > result.log || retVal=$?
@@ -183,9 +183,9 @@ jobs:
           fi
         shell: bash
 
-      - name: Build using Clang Compiler
+      - name: Build using GCC Compiler
         run: |
-          rm -rf build && CC=clang CXX=clang++ cmake -B build && cmake --build build -j8
+          rm -rf build && CC=gcc CXX=g++ cmake -B build && cmake --build build -j8
 
       - name: Prepare HLSDK
         run: |
