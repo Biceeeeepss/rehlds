@@ -61,7 +61,7 @@ if ("$ENV{CXX}" MATCHES "icpc")
 		set(LINK_FLAGS "${LINK_FLAGS} -ipo")
 	endif()
 else()
-	# Produce code optimized for generic processors.
+	# Produce code optimized for the most common IA32/AMD64/EM64T processors.
 	# As new processors are deployed in the marketplace, the behavior of this option will change.
 	set(COMPILE_FLAGS "${COMPILE_FLAGS} \
 		-march=pentium4 -msse3\
@@ -73,7 +73,7 @@ else()
 
 	# Check if not Clang compiler
 	if (NOT "$ENV{CXX}" MATCHES "clang")
-		set(COMPILE_FLAGS "${COMPILE_FLAGS} -Wno-unused-but-set-variable")
+		set(COMPILE_FLAGS "${COMPILE_FLAGS} -fno-plt -Wno-unused-but-set-variable")
 
 		# GCC >= 8.3
 		if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 8.0)
@@ -245,7 +245,7 @@ target_include_directories(engine PRIVATE
 target_compile_definitions(engine PRIVATE
 	SWDS
 	REHLDS_JIT
-	# REHLDS_SSE
+	REHLDS_SSE
 	REHLDS_FIXES
 	REHLDS_CHECKS
 	REHLDS_API
@@ -264,7 +264,7 @@ target_compile_definitions(engine PRIVATE
 	_vsnwprintf=vswprintf
 
 	$<$<CONFIG:Unittests>:
-	REHLDS_UNIT_TESTS REHLDS_JIT>
+	REHLDS_UNIT_TESTS REHLDS_SSE REHLDS_JIT>
 )
 
 target_sources(engine PRIVATE
