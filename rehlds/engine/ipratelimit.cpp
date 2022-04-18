@@ -138,13 +138,13 @@ bool CIPRateLimit::CheckIP(netadr_t adr)
 }
 
 // Return false if this IP exceeds rate limits
-bool SV_CheckConnectionLessRateLimits(netadr_t &adr)
-{
-	bool ret = rateChecker.CheckIP(adr);
-	if (!ret && sv_logblocks.value)
-	{
-		Log_Printf("Traffic from %s was blocked for exceeding rate limits\n", NET_AdrToString(adr));
-	}
+//bool SV_CheckConnectionLessRateLimits(netadr_t &adr)
+//{
+//	bool ret = rateChecker.CheckIP(adr);
+//	if (!ret && sv_logblocks.value)
+//	{
+//		Log_Printf("Traffic from %s was blocked for exceeding rate limits\n", NET_AdrToString(adr));
+//	}
 
-	return ret;
-}
+//	return ret;
+//}
