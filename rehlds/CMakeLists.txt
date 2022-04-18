@@ -156,6 +156,7 @@ set(ENGINE_SRCS
 	engine/filesystem_internal.cpp
 	engine/hashpak.cpp
 	engine/info.cpp
+	engine/ipratelimit.cpp
 	engine/l_studio.cpp
 	engine/textures.cpp
 	engine/tmessage.cpp
