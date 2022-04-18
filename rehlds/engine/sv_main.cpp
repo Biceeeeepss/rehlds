@@ -3680,15 +3680,15 @@ void SV_ReadPackets(void)
 		if (*(uint32 *)net_message.data == 0xFFFFFFFF)
 		{
 			// Connectionless packet
-			//if (g_RehldsHookchains.m_SV_CheckConnectionLessRateLimits.callChain([](netadr_t& net_from, const uint8_t *, int) { return SV_CheckConnectionLessRateLimits(net_from); }, net_from, net_message.data, net_message.cursize))
-			//{
-//#ifdef REHLDS_FIXES
-//				if (SV_FilterPacket())
-//				{
-//					SV_SendBan();
-//					continue;
-//				}
-//#endif
+			if (g_RehldsHookchains.m_SV_CheckConnectionLessRateLimits.callChain([](netadr_t& net_from, const uint8_t *, int) { return SV_CheckConnectionLessRateLimits(net_from); }, net_from, net_message.data, net_message.cursize))
+			{
+#ifdef REHLDS_FIXES
+				if (SV_FilterPacket())
+				{
+					SV_SendBan();
+					continue;
+				}
+#endif
 
 				Steam_HandleIncomingPacket(net_message.data, net_message.cursize, ntohl(*(u_long *)&net_from.ip[0]), htons(net_from.port));
 				SV_ConnectionlessPacket();
@@ -8009,10 +8009,10 @@ void SV_Init(void)
 	Cvar_RegisterVariable(&sv_rcon_banpenalty);
 	Cvar_RegisterVariable(&sv_minrate);
 	Cvar_RegisterVariable(&sv_maxrate);
-	//Cvar_RegisterVariable(&max_queries_sec);
-	//Cvar_RegisterVariable(&max_queries_sec_global);
-	//Cvar_RegisterVariable(&max_queries_window);
-	//Cvar_RegisterVariable(&sv_logblocks);
+	Cvar_RegisterVariable(&max_queries_sec);
+	Cvar_RegisterVariable(&max_queries_sec_global);
+	Cvar_RegisterVariable(&max_queries_window);
+	Cvar_RegisterVariable(&sv_logblocks);
 	Cvar_RegisterVariable(&sv_downloadurl);
 	Cvar_RegisterVariable(&sv_version);
 	Cvar_RegisterVariable(&sv_allow_dlfile);
