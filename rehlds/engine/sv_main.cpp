@@ -8009,9 +8009,9 @@ void SV_Init(void)
 	Cvar_RegisterVariable(&sv_rcon_banpenalty);
 	Cvar_RegisterVariable(&sv_minrate);
 	Cvar_RegisterVariable(&sv_maxrate);
-	Cvar_RegisterVariable(&max_queries_sec);
-	Cvar_RegisterVariable(&max_queries_sec_global);
-	Cvar_RegisterVariable(&max_queries_window);
+	//Cvar_RegisterVariable(&max_queries_sec);
+	//Cvar_RegisterVariable(&max_queries_sec_global);
+	//Cvar_RegisterVariable(&max_queries_window);
 	Cvar_RegisterVariable(&sv_logblocks);
 	Cvar_RegisterVariable(&sv_downloadurl);
 	Cvar_RegisterVariable(&sv_version);
